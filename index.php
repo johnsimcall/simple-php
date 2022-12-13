@@ -5,8 +5,8 @@
 
  <body>
  <?php echo '<h1>Hello World!</h1>'; 
-       echo 'You requested the contents of: <b>'; echo $_SERVER['SERVER_NAME']; echo '</b><br>';
-       echo 'My name is: <b>'; echo $_ENV['HOSTNAME']; echo '</b> at <b>'; echo $_SERVER['SERVER_ADDR']; echo '</b><br>';
+       echo 'You requested the contents of: <b>'; echo $_SERVER['HTTP_HOST']; echo '</b><br>';
+       echo 'The Pod that answered is: <b>'; echo $_ENV['HOSTNAME']; echo '</b> with an internal IP of <b>'; echo $_SERVER['SERVER_ADDR']; echo '</b><br><br>';
  
        if (empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
          echo 'Direct connection, no proxy or HTTP_X_FORWARD_FOR not set.<br>You appear to be: <b>'; echo $_SERVER['REMOTE_ADDR']; echo '</b><br>';
