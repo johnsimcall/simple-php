@@ -9,13 +9,14 @@
        echo 'My name is: <b>'; echo $_ENV['HOSTNAME']; echo '</b> at <b>'; echo $_SERVER['SERVER_ADDR']; echo '</b><br>';
  
        if (empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-         echo 'Your <u>proxy</u> reports that your name is: <b>'; echo $_SERVER['HTTP_X_FORWARDED_FOR']; echo "</b><br>";
-         echo 'REMOTE_ADDR is: <b>'; echo $_SERVER['REMOTE_ADDR']; echo "</b><br>;
+         echo 'No proxy, or HTTP_X_FORWARD_FOR not set.<br>You appear to be: <b>'; echo $_SERVER['REMOTE_ADDR']; echo '</b><br>';
        } else {
-         echo 'No proxy, or HTTP_X_FORWARD_FOR not set. You appear to be: <b>'; echo $_SERVER['REMOTE_ADDR']; echo "</b><br>;
+         echo 'Your <u>proxy</u> reports that you are: <b>'; echo $_SERVER['HTTP_X_FORWARDED_FOR']; echo '</b><br>';
+         echo 'REMOTE_ADDR is: <b>'; echo $_SERVER['REMOTE_ADDR']; echo '</b><br>';
        }
  ?>
 
+<!--
  <?php
   $everything = get_defined_vars();
   ksort($everything);
@@ -23,5 +24,6 @@
  ?>
 
  <?php phpinfo(); ?>
+-->
  </body>
 </html>
