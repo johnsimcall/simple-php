@@ -18,16 +18,56 @@
        }
  ?>
 
-<!--
+ <p></p>
+
  <?php
-  $everything = get_defined_vars();
-  ksort($everything);
-  echo '<pre>'; print_r($everything); echo '</pre>';
+       if (!empty($_ENV['DEBUG'])) {
+         $everything = get_defined_vars();
+         ksort($everything);
+         echo '<pre>'; print_r($everything); echo '</pre>';
+       }
  ?>
--->
 
  <p></p>
- <?php phpinfo(); ?>
+
+ <?php
+       if (!empty($_ENV['DEBUG'])) {
+         phpinfo();
+       }
+ ?>
 
  </body>
 </html>
+
+<!--
+# How to add OCP_XXXX variables
+
+# command-line patch
+  oc patch deployment/simple-php --type merge -p '{"spec":{"template":{"spec":{"containers":[{"name":"simple-php","env":[{"name":"OCP_NODE_NAME","valueFrom":{"fieldRef":{"apiVersion":"v1","fieldPath":"spec.nodeName"}}},{"name":"OCP_NODE_IP","valueFrom":{"fieldRef":{"apiVersion":"v1","fieldPath":"status.hostIP"}}},{"name":"OCP_POD_NAME","valueFrom":{"fieldRef":{"apiVersion":"v1","fieldPath":"metadata.name"}}},{"name":"OCP_POD_IP","valueFrom":{"fieldRef":{"apiVersion":"v1","fieldPath":"status.podIP"}}}]}]}}}}'
+
+# raw YAML under
+spec:
+  template:
+    spec:
+      containers:
+        - name: simple-php
+          # ... #
+          env:
+            - name: OCP_NODE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+            - name: OCP_NODE_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+            - name: OCP_POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: OCP_POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+          # ... #
+-->
