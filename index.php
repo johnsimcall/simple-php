@@ -16,6 +16,9 @@
        } else {
          echo 'The proxy says you are: <b>'; echo $_SERVER['HTTP_X_FORWARDED_FOR']; echo '</b><br>';
        }
+  
+       echo "Debug info is available by setting the DEBUG=true variable<br>";
+       echo "oc set env deployment/simple-php DEBUG=true";
  ?>
 
  <p></p>
