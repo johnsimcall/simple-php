@@ -43,7 +43,7 @@
 # How to add OCP_XXXX variables
 
 # command-line patch
-  oc patch deployment/simple-php --type merge -p '{"spec":{"template":{"spec":{"containers":[{"name":"simple-php","env":[{"name":"OCP_NODE_NAME","valueFrom":{"fieldRef":{"apiVersion":"v1","fieldPath":"spec.nodeName"}}},{"name":"OCP_NODE_IP","valueFrom":{"fieldRef":{"apiVersion":"v1","fieldPath":"status.hostIP"}}},{"name":"OCP_POD_NAME","valueFrom":{"fieldRef":{"apiVersion":"v1","fieldPath":"metadata.name"}}},{"name":"OCP_POD_IP","valueFrom":{"fieldRef":{"apiVersion":"v1","fieldPath":"status.podIP"}}}]}]}}}}'
+  oc patch deployment/simple-php -p '{"spec":{"template":{"spec":{"containers":[{"name":"simple-php","env":[{"name":"OCP_NODE_NAME","valueFrom":{"fieldRef":{"apiVersion":"v1","fieldPath":"spec.nodeName"}}},{"name":"OCP_NODE_IP","valueFrom":{"fieldRef":{"apiVersion":"v1","fieldPath":"status.hostIP"}}},{"name":"OCP_POD_NAME","valueFrom":{"fieldRef":{"apiVersion":"v1","fieldPath":"metadata.name"}}},{"name":"OCP_POD_IP","valueFrom":{"fieldRef":{"apiVersion":"v1","fieldPath":"status.podIP"}}}]}]}}}}'
 
 # raw YAML under
 spec:
