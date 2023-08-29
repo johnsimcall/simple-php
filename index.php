@@ -21,7 +21,12 @@
        echo "oc set env deployment/simple-php DEBUG=true";
  ?>
 
- <p></p>
+ echo '<h2>Headers (request):</h2>';
+ echo '<p>';                                                                                                                                                           
+ foreach (getallheaders() as $name => $value) {                                                                                                                        
+   echo "$name: $value\n<br>";                                                                                                                                         
+ }                                                                                                                                                                     
+ echo '</p>';
 
  <?php
        if (!empty($_ENV['DEBUG'])) {
